@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using StackExchange.Profiling;
 
-namespace Starter.Application.Common.Behaviors;
+namespace Starter.Application.Common;
 
 public class LoggingDecorator<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
