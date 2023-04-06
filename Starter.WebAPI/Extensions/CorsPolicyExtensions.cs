@@ -1,15 +1,20 @@
-﻿namespace Starter.WebAPI.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Starter.WebAPI.Extensions;
 
 public static class CorsPolicyExtensions
 {
-    public static void ConfigureCorsPolicy(this IServiceCollection services)
+  public static void ConfigureCorsPolicy(this IServiceCollection services)
+  {
+    services.AddCors(opt =>
     {
-        services.AddCors(opt =>
-        {
-            opt.AddDefaultPolicy(builder => builder
-                .AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-        });
-    }
+      opt.AddDefaultPolicy(builder => builder
+              .AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader());
+    });
+  }
 }

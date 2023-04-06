@@ -1,17 +1,15 @@
 using Starter.Application;
 using Starter.Persistence;
-using Starter.Persistence.Context;
-using Starter.WebAPI;
 using Starter.WebAPI.Extensions;
-using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Starter.Database;
+using Starter.WebAPI.AppExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.ConfigurePersistence(builder.Configuration);
 builder.Services.ConfigureHealthChecks(builder.Configuration);
 builder.Services.ConfigureApplication();
-
+builder.Services.ConfigurationDatabaseMigration(builder.Configuration);
 builder.Services.ConfigureApiBehavior();
 builder.Services.ConfigureCorsPolicy();
 
@@ -22,18 +20,13 @@ builder.Services.AddMiniProfiler(options => options.RouteBasePath = "/profiler")
 
 var app = builder.Build();
 
-var serviceScope = app.Services.CreateScope();
-var dataContext = serviceScope.ServiceProvider.GetService<DataContext>();
-dataContext?.Database.EnsureCreated();
+if (builder.Configuration.GetValue<bool>("IsHealthCheckOn"))
+{
+  app.UseHealthChecks();
+}
 
 app.UseSwagger();
-app.UseHealthChecks(path: "/health", new HealthCheckOptions()
-{
-  Predicate = _ => true,
-  ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-});
-
-app.UseHealthChecksUI();
+app.MigrateDatabase();
 app.UseMiniProfiler();
 app.UseSwaggerUI();
 app.UseErrorHandler();

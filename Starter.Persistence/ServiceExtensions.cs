@@ -9,12 +9,12 @@ namespace Starter.Persistence;
 
 public static class ServiceExtensions
 {
-    public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
-    {
-        var connectionString = configuration.GetConnectionString("Sqlite");
-        services.AddDbContext<DataContext>(opt => opt.UseSqlite(connectionString));
+  public static void ConfigurePersistence(this IServiceCollection services, IConfiguration configuration)
+  {
+    var connectionString = configuration.GetConnectionString("PostgreSQL");
+    services.AddDbContext<DataContext>(opt => opt.UseNpgsql(connectionString));
 
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<IUserRepository, UserRepository>();
-    }
+    services.AddScoped<IUnitOfWork, UnitOfWork>();
+    services.AddScoped<IUserRepository, UserRepository>();
+  }
 }

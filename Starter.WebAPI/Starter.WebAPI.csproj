@@ -14,9 +14,14 @@
     <PackageReference Include="AspNetCore.HealthChecks.Sqlite" Version="6.0.2"/>
     <PackageReference Include="AspNetCore.HealthChecks.System" Version="6.0.5"/>
     <PackageReference Include="AspNetCore.HealthChecks.UI.SQLite.Storage" Version="6.0.5"/>
+    <PackageReference Include="FluentMigrator.Runner" Version="3.3.2"/>
+    <PackageReference Include="FluentMigrator.Extensions.Postgres" Version="3.3.2"/>
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="6.0.2"/>
+    <PackageReference Include="AspNetCore.HealthChecks.UI.PostgreSQL.Storage" Version="6.0.4"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Starter.Application\Starter.Application.csproj"/>
     <ProjectReference Include="..\Starter.Persistence\Starter.Persistence.csproj"/>
+    <ProjectReference Include="..\Starter.Database\Starter.Database.csproj"/>
   </ItemGroup>
 </Project>

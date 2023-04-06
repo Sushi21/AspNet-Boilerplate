@@ -1,4 +1,4 @@
-﻿using Starter.Domain.Entities;
+using Starter.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Starter.Persistence.Context;

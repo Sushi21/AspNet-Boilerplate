@@ -16,7 +16,6 @@ public static class RequestHandlerRegistration
   where TRequest : IRequest<TResponse>
   where TRequestHandler : class, IRequestHandler<TRequest, TResponse>
   {
-
     services.AddTransient<TRequestHandler>();
 
     services.AddTransient<IRequestHandler<TRequest, TResponse>>(x =>
