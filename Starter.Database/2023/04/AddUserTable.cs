@@ -10,7 +10,7 @@ public class AddUserTable : Migration
   {
     Execute.Sql("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";");
 
-    Create.Table("User")
+    Create.Table("Users")
         .WithColumn("Id").AsGuid().PrimaryKey().WithDefault(SystemMethods.NewGuid)
         .WithColumn("Email").AsString().NotNullable()
         .WithColumn("Name").AsString().NotNullable()
@@ -19,6 +19,6 @@ public class AddUserTable : Migration
 
   public override void Down()
   {
-    Delete.Table("User");
+    Delete.Table("Users");
   }
 }

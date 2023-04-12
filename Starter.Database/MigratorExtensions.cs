@@ -17,10 +17,12 @@ namespace Starter.Database
           .WithDefaultValue(DateTime.Now);
 
       self.WithColumn("DateUpdated")
-          .AsDateTime();
+          .AsDateTime()
+          .Nullable();
 
       self.WithColumn("DateDeleted")
-          .AsDateTime();
+          .AsDateTime()
+          .Nullable();
 
       return self;
     }
