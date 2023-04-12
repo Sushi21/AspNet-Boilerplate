@@ -12,16 +12,16 @@ namespace Starter.Database
     public static ICreateTableWithColumnSyntax WithBaseEntityColumn(this ICreateTableWithColumnSyntax self)
     {
       self.WithColumn("DateCreated")
-          .AsDateTime()
+          .AsDateTimeOffset()
           .NotNullable()
           .WithDefaultValue(DateTime.Now);
 
       self.WithColumn("DateUpdated")
-          .AsDateTime()
+          .AsDateTimeOffset()
           .Nullable();
 
       self.WithColumn("DateDeleted")
-          .AsDateTime()
+          .AsDateTimeOffset()
           .Nullable();
 
       return self;
