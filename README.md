@@ -19,7 +19,7 @@ Very overkill for what it's doing but is to get general ideas on some concepts a
 - .Net 7 with entity-framework and postgres db
 - clean architecture approach 
 - CQRS approach with a decorator for logging and profiling ( see `LoggingDecorator`)
-- Use real tempory database for unit tests.
+- Use real temporary database for unit tests.
 
 ## Usage
 - Before running `dotnet run` make sure you run the command `docker-compose up -d` 

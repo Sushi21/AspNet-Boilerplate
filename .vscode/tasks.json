@@ -2,6 +2,15 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "type": "shell",
+      "label": "compose-up-dev",
+      "command": "docker-compose up -d",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
       "label": "build",
       "command": "dotnet",
       "type": "process",
@@ -36,6 +45,13 @@
         "${workspaceFolder}/Starter.WebAPI/Starter.WebAPI.csproj"
       ],
       "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Debug",
+      "dependsOn" : [
+        "build",
+        "compose-up-dev"
+      ]
     }
   ]
 }
