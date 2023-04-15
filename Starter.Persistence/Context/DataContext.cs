@@ -5,9 +5,9 @@ namespace Starter.Persistence.Context;
 
 public class DataContext : DbContext
 {
+  public DbSet<User> Users { get; set; }
+
   public DataContext(DbContextOptions<DataContext> options) : base(options)
   {
   }
-
-  public DbSet<User> Users { get; set; }
 }

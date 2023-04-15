@@ -23,7 +23,7 @@ public class GetAllUserHandlerTests : DatabaseTestCase
   [Fact]
   async void Handler_should_return_all_users()
   {
-    var users = await UserBuilder
+    var users = UserBuilder
       .New(Context)
       .BuildMany(10);
 

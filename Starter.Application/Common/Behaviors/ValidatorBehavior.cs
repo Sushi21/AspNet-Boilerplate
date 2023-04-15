@@ -7,30 +7,30 @@ namespace Starter.Application.Common.Behaviors;
 public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
-    private readonly IEnumerable<IValidator<TRequest>> validators;
-    
-    public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
-    {
-        this.validators = validators;
-    }
+  private readonly IEnumerable<IValidator<TRequest>> validators;
 
-    public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
-    {
-        if (!validators.Any()) return await next();
-        
-        var context = new ValidationContext<TRequest>(request);
+  public ValidationBehavior(IEnumerable<IValidator<TRequest>> validators)
+  {
+    this.validators = validators;
+  }
 
-        var errors = validators
-            .Select(async x => await x.ValidateAsync(context))
-            .SelectMany(x  => x.Result.Errors)
-            .Where(x => x != null)
-            .Select(x => x.ErrorMessage)
-            .Distinct()
-            .ToArray();
+  public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
+  {
+    if (!validators.Any()) return await next();
 
-        if (errors.Any())
-            throw new BadRequestException(errors);
+    var context = new ValidationContext<TRequest>(request);
 
-        return await next();
-    }
+    var errors = validators
+        .Select(async x => await x.ValidateAsync(context))
+        .SelectMany(x => x.Result.Errors)
+        .Where(x => x != null)
+        .Select(x => x.ErrorMessage)
+        .Distinct()
+        .ToArray();
+
+    if (errors.Any())
+      throw new BadRequestException(errors);
+
+    return await next();
+  }
 }

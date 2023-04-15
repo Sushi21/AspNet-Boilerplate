@@ -4,6 +4,6 @@ namespace Starter.Application.Repositories;
 
 public interface IUserRepository : IBaseRepository<User>
 {
-  Task<bool> IsEmailAlreadyExist(string email, CancellationToken cancellationToken);
-  Task<User> GetByEmail(string email, CancellationToken cancellationToken);
+  bool IsEmailAlreadyExist(string email);
+  User GetByEmail(string email);
 }
