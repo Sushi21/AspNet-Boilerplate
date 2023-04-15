@@ -20,13 +20,13 @@ public class UserBuilder
     return new UserBuilder(dataContext);
   }
 
-  public async Task<User> BuildOne()
+  public User BuildOne()
   {
-    var users = await BuildMany(1);
+    var users = BuildMany(1);
     return users.Single();
   }
 
-  public async Task<List<User>> BuildMany(int count)
+  public List<User> BuildMany(int count)
   {
     var users = Enumerable.Range(0, count)
         .Select(_ =>
@@ -36,14 +36,14 @@ public class UserBuilder
           .RuleFor(u => u.Email, u => u.Person.Email);
 
           var user = userFaker.Generate();
-          
+
           dataContext.Add(user);
 
           return user;
 
         }).ToList();
 
-    await dataContext.SaveChangesAsync();
+    dataContext.SaveChanges();
 
     return users;
   }

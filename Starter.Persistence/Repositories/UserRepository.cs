@@ -11,13 +11,13 @@ public class UserRepository : BaseRepository<User>, IUserRepository
   {
   }
 
-  public Task<bool> IsEmailAlreadyExist(string email, CancellationToken cancellationToken)
+  public bool IsEmailAlreadyExist(string email)
   {
-    return Context.Users.AnyAsync(x => x.Email == email, cancellationToken);
+    return Context.Users.Any(x => x.Email == email);
   }
 
-  public Task<User> GetByEmail(string email, CancellationToken cancellationToken)
+  public User GetByEmail(string email)
   {
-    return Context.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+    return Context.Users.FirstOrDefault(x => x.Email == email);
   }
 }

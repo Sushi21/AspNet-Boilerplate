@@ -22,6 +22,6 @@
   <ItemGroup>
     <ProjectReference Include="..\Starter.Application\Starter.Application.csproj"/>
     <ProjectReference Include="..\Starter.Persistence\Starter.Persistence.csproj"/>
-        <ProjectReference Include="..\Starter.Database\Starter.Database.csproj"/>
+    <ProjectReference Include="..\Starter.Database\Starter.Database.csproj"/>
   </ItemGroup>
 </Project>

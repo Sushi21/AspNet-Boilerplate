@@ -18,25 +18,24 @@ public class UsersController : ControllerBase
   }
 
   [HttpGet]
-  public async Task<ActionResult<GetAllUserResponse>> GetAll(CancellationToken cancellationToken)
+  public ActionResult<GetAllUserResponse> GetAll()
   {
-    var response = await mediator.Send(new GetAllUserRequest(), cancellationToken);
+    var response = mediator.Send(new GetAllUserRequest());
     return Ok(response);
   }
 
   [HttpGet]
   [Route("{id:guid}")]
-  public async Task<ActionResult<GetUserResponse>> Get(Guid id, CancellationToken cancellationToken)
+  public ActionResult<GetUserResponse> Get(Guid id)
   {
-    var response = await mediator.Send(new GetUserRequest(id), cancellationToken);
+    var response = mediator.Send(new GetUserRequest(id));
     return Ok(response);
   }
 
   [HttpPost]
-  public async Task<ActionResult<CreateUserResponse>> Create(CreateUserRequest request,
-      CancellationToken cancellationToken)
+  public ActionResult<CreateUserResponse> Create(CreateUserRequest request)
   {
-    var response = await mediator.Send(request, cancellationToken);
+    var response = mediator.Send(request);
     return Ok(response);
   }
 }
